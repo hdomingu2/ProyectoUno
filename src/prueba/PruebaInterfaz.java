@@ -6,6 +6,8 @@
 
 package prueba;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author hdomingu2
@@ -77,6 +79,11 @@ public class PruebaInterfaz extends javax.swing.JFrame {
         jPanel1.add(txtResusltado, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 60, -1));
 
         cmdBorrar.setText("Borrar");
+        cmdBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdBorrarActionPerformed(evt);
+            }
+        });
         jPanel1.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, -1, -1));
 
         cmdCalcular.setText("Calcular");
@@ -102,9 +109,7 @@ public class PruebaInterfaz extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNumeroUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroUnoActionPerformed
-        
-        
-        
+      
     }//GEN-LAST:event_txtNumeroUnoActionPerformed
 
     private void txtNumeroDosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumeroDosActionPerformed
@@ -112,8 +117,33 @@ public class PruebaInterfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNumeroDosActionPerformed
 
     private void cmdCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCalcularActionPerformed
-        // TODO add your handling code here:
+        if (txtNumeroUno.getText().isEmpty() && txtNumeroDos.getText().isEmpty() ) {
+            JOptionPane.showMessageDialog(this, "Por Favor rellene los campos vacios","ERROR", JOptionPane.ERROR_MESSAGE);
+        }else if(txtNumeroUno.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Por Favor rellene el primer campo","ERROR", JOptionPane.ERROR_MESSAGE);
+        }else if(txtNumeroDos.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Por Favor rellene el segundo campo","ERROR", JOptionPane.ERROR_MESSAGE);
+        }else {
+    String n1,n2,res;
+    int num1,num2,suma;
+    n1= txtNumeroUno.getText();
+   n2=txtNumeroDos.getText();
+   num1=Integer.parseInt(n1);
+   num2=Integer.parseInt(n2);
+   suma=num1+num2;
+   res= String.valueOf(suma);
+       txtResusltado.setText(res);
+        }
     }//GEN-LAST:event_cmdCalcularActionPerformed
+
+    private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
+      txtNumeroUno.setText("");
+      txtNumeroDos.setText("");
+      txtResusltado.setText("");
+      txtNumeroUno.requestFocusInWindow();
+      
+        
+    }//GEN-LAST:event_cmdBorrarActionPerformed
 
     /**
      * @param args the command line arguments
